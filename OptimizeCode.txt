@@ -1,0 +1,27 @@
+Public CalcState As Long
+Public EventState As Boolean
+Public PageBreakState As Boolean
+
+Sub OptimizeCode_Begin()
+
+	Application.ScreenUpdating = False
+	
+	eventState = Application.EnableEvents
+	Application.EnableEvents = False
+	
+	calcState = Application.Calculation
+	Application.Calculation = xlCalculationManual
+	
+	pageBreakState = ActiveSheet.DisplayPageBreaks
+	ActiveSheet.DisplayPageBreaks = False
+	
+End Sub
+
+Sub OptimizeCode_End()
+
+	ActiveSheet.DisplayPageBreaks = pageBreakState
+	Application.Calculation = calcState
+	Application.EnableEvents = eventState
+	Application.ScreenUpdating = True
+
+End Sub
